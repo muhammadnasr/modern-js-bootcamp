@@ -1,11 +1,11 @@
-import { getTodos, toggleTodo, removeTodo } from './todos'
+import { TodosService } from './todos-service'
 import { getFilters } from './filters'
 
 // Render application todos based on filters
 const renderTodos = () => {
     const todoEl = document.querySelector('#todos')
     const { searchText, hideCompleted } = getFilters()
-    const filteredTodos = getTodos().filter((todo) => {
+    const filteredTodos = TodosService.getTodos().filter((todo) => {
         const searchTextMatch = todo.text.toLowerCase().includes(searchText.toLowerCase())
         const hideCompletedMatch = !hideCompleted || !todo.completed
 
@@ -41,7 +41,7 @@ const generateTodoDOM = (todo) => {
     checkbox.checked = todo.completed
     containerEl.appendChild(checkbox)
     checkbox.addEventListener('change', () => {
-        toggleTodo(todo.id)
+        TodosService.toggleTodo(todo.id)
         renderTodos()
     })
 
@@ -59,7 +59,7 @@ const generateTodoDOM = (todo) => {
     removeButton.classList.add('button', 'button--text')
     todoEl.appendChild(removeButton)
     removeButton.addEventListener('click', () => {
-        removeTodo(todo.id)
+        TodosService.removeTodo(todo.id)
         renderTodos()
     })
 
