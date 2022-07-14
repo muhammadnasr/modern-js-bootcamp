@@ -11,9 +11,7 @@ export class TodosService {
         sortBy: 'byEdited'
     }
 
-    static getTodoByID = (todoId) => {
-        return this.#todos.find((todo) => todo.id === todoId)
-    }
+    static getTodoByID = (todoId) => this.#todos.find((todo) => todo.id === todoId)
 
     static getFilteredTodos = () => {   
         let sortedTodos = this.#getSortedTodos()
@@ -106,7 +104,7 @@ export class TodosService {
     }
 
     static updateTodo = (id,{text}) => {
-        const todo = this.#todos.find((todo) => todo.id === id)
+        const todo = this.getTodoByID(id)
 
         if (todo && typeof(text) === 'string') {
             todo.text = text
@@ -127,7 +125,7 @@ export class TodosService {
 
     // Toggle the completed value for a given todo
     static toggleTodo = (id) => {
-        const todo = this.#todos.find((todo) => todo.id === id)
+        const todo = this.getTodoByID(id)
 
         if (todo) {
             todo.completed = !todo.completed
