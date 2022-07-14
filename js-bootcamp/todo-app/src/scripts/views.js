@@ -1,4 +1,5 @@
 import { TodosService } from './todos-service'
+import moment from 'moment'
 
 // Render application todos based on filters
 const renderTodos = () => {
@@ -20,12 +21,13 @@ const renderTodos = () => {
     }
 }
 
-// Get the DOM elements for an individual note
+// Get the DOM elements for an individual todo
 const generateTodoDOM = (todo) => {
     const todoEl = document.createElement('label')
     const containerEl = document.createElement('div')
     const checkbox = document.createElement('input')
     const todoText = document.createElement('span')
+    const editButton = document.createElement('button')
     const removeButton = document.createElement('button')
 
     // Setup todo checkbox
@@ -45,6 +47,14 @@ const generateTodoDOM = (todo) => {
     todoEl.classList.add('list-item')
     containerEl.classList.add('list-item__container')
     todoEl.appendChild(containerEl)
+
+    // Setup the edit button
+    editButton.textContent = 'edit'
+    editButton.classList.add('button', 'button--text')
+    todoEl.appendChild(editButton)
+    editButton.addEventListener('click', () => {
+        location.assign(`/edit.html#${todo.id}`)
+    })
 
     // Setup the remove button
     removeButton.textContent = 'remove'
@@ -67,4 +77,24 @@ const generateSummaryDOM = (incompleteTodos) => {
     return summary
 }
 
-export { generateTodoDOM, renderTodos, generateSummaryDOM }
+
+const renderEditTodo = (todoId) => {
+    const textElement = document.querySelector('#todo-text')
+    const dateElement = document.querySelector('#last-edited')
+
+    const todo = TodosService.getTodoByID(todoId)
+
+    if (!todo) {
+        location.assign('/index.html')
+    }
+
+    textElement.value = todo.text
+    dateElement.textContent = generateLastEdited(todo.updatedAt)
+}
+
+// Generate the last edited message
+const generateLastEdited = (timestamp) => {
+    return `Last edited ${moment(timestamp).fromNow()}`
+}
+
+export { generateTodoDOM, renderTodos, generateSummaryDOM, renderEditTodo, generateLastEdited }

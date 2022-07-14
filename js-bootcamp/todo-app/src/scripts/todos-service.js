@@ -11,7 +11,11 @@ export class TodosService {
         sortBy: 'byEdited'
     }
 
-    static getFilteredTodos = () => {
+    static getTodoByID = (todoId) => {
+        return this.#todos.find((todo) => todo.id === todoId)
+    }
+
+    static getFilteredTodos = () => {   
         let sortedTodos = this.#getSortedTodos()
         return sortedTodos.filter((todo) => {
             const searchTextMatch = todo.text.toLowerCase().includes(this.#filters.searchText.toLowerCase())
@@ -99,6 +103,17 @@ export class TodosService {
             updatedAt: timestamp
         })
         TodosService.saveTodos()
+    }
+
+    static updateTodo = (id,{text}) => {
+        const todo = this.#todos.find((todo) => todo.id === id)
+
+        if (todo && typeof(text) === 'string') {
+            todo.text = text
+            todo.updatedAt = moment().valueOf()
+            TodosService.saveTodos()
+        }
+        return todo
     }
 
     static removeTodo = (id) => {
