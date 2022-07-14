@@ -1,11 +1,11 @@
 import { renderTodos } from './views'
-import { setFilters } from './filters'
 import { TodosService } from './todos-service'
 
+TodosService.loadTodos()    
 renderTodos()
 
 document.querySelector('#search-text').addEventListener('input', (e) => {
-    setFilters({
+    TodosService.setFilters({
         searchText: e.target.value
     })
     renderTodos()
@@ -16,7 +16,6 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
 
     if (text.length > 0) {
-        console.log(TodosService.todos);
         TodosService.createTodo(text)
         renderTodos()
         e.target.elements.text.value = ''
@@ -24,7 +23,7 @@ document.querySelector('#new-todo').addEventListener('submit', (e) => {
 })
 
 document.querySelector('#hide-completed').addEventListener('change', (e) => {
-    setFilters({
+    TodosService.setFilters({
         hideCompleted: e.target.checked
     })
     renderTodos()

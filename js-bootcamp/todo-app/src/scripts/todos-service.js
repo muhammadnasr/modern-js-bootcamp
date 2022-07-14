@@ -4,7 +4,30 @@ export class TodosService {
 
     static #todos = []
 
-    static getTodos = () => todos
+    static filters = {
+        searchText: '', 
+        hideCompleted: false
+    }
+    
+    static getFilteredTodos = () => {
+        return todos.filter((todo) => {
+            const searchTextMatch = todo.text.toLowerCase().includes(this.filters.searchText.toLowerCase())
+            const hideCompletedMatch = !this.filters.hideCompleted || !todo.completed
+    
+            return searchTextMatch && hideCompletedMatch
+        })    
+    }
+
+    static getIncompletedTodos = () => this.getFilteredTodos().filter((todo) => !todo.completed)
+    
+    static setFilters = ({ searchText, hideCompleted }) => {
+        if (typeof searchText === 'string') {
+            this.filters.searchText = searchText
+        }
+        if (typeof hideCompleted === 'boolean') {
+           this.filters.hideCompleted = hideCompleted
+        }
+    }
 
     // Fetch existing todos from localStorage
     static loadTodos = () => {
@@ -51,6 +74,3 @@ export class TodosService {
     }
 
 }
-
-TodosService.loadTodos()
-

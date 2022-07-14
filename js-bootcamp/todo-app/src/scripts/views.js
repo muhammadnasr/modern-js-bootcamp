@@ -1,20 +1,12 @@
 import { TodosService } from './todos-service'
-import { getFilters } from './filters'
 
 // Render application todos based on filters
 const renderTodos = () => {
     const todoEl = document.querySelector('#todos')
-    const { searchText, hideCompleted } = getFilters()
-    const filteredTodos = TodosService.getTodos().filter((todo) => {
-        const searchTextMatch = todo.text.toLowerCase().includes(searchText.toLowerCase())
-        const hideCompletedMatch = !hideCompleted || !todo.completed
-
-        return searchTextMatch && hideCompletedMatch
-    })
-    const incompleteTodos = filteredTodos.filter((todo) => !todo.completed)
+    const filteredTodos = TodosService.getFilteredTodos()
 
     todoEl.innerHTML = ''
-    todoEl.appendChild(generateSummaryDOM(incompleteTodos))
+    todoEl.appendChild(generateSummaryDOM(TodosService.getIncompletedTodos()))
 
     if (filteredTodos.length > 0) {
         filteredTodos.forEach((todo) => {
