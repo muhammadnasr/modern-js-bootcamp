@@ -1,23 +1,9 @@
-let min = 5
-let max = 12
-let randomNum = Math.random() * (max - min) + min
-
-
-class person  {
-          #name
-          methpd(){
-
-          }
+let score = 5
+let getNewScoreMessage = function () {
+    //shadowing
+    let score = 2
+    return `Shadowing score: ${score}`
 }
-age=10
-debugger
-console.log(age)
+let result = getNewScoreMessage()
+console.log(`${result}, Original score: ${score}`)
 
-console.log(['a',{name:'ehat'}].join(''))
-
-var fo = {
-a(){
-
-},
-b:1;
-}
