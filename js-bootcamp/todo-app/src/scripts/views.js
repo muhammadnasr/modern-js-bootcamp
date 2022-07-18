@@ -51,6 +51,7 @@ const generateTodoDOM = (todo) => {
     // Setup the edit button
     editButton.textContent = 'edit'
     editButton.classList.add('button', 'button--text')
+    editButton.classList.add('button', 'button--push--right')
     todoEl.appendChild(editButton)
     editButton.addEventListener('click', () => {
         location.assign(`/edit.html#${todo.id}`)
