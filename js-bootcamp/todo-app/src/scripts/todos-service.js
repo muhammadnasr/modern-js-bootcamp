@@ -26,35 +26,11 @@ export class TodosService {
     static #getSortedTodos = () => {
         switch (this.#filters.sortBy) {
             case 'byEdited':
-                return this.#todos.sort((a, b) => {
-                    if (a.updatedAt > b.updatedAt) {
-                        return -1
-                    } else if (a.updatedAt < b.updatedAt) {
-                        return 1
-                    } else {
-                        return 0
-                    }
-                })
+                return this.#todos.sort((a, b) => a.updatedAt - b.updatedAt)
             case 'byCreated':
-                return this.#todos.sort((a, b) => {
-                    if (a.createdAt > b.createdAt) {
-                        return -1
-                    } else if (a.createdAt < b.createdAt) {
-                        return 1
-                    } else {
-                        return 0
-                    }
-                })
+                return this.#todos.sort((a, b) => a.createdAt - b.createdAt)
             case 'alphabetical':
-                return this.#todos.sort((a, b) => {
-                    if (a.text.toLowerCase() < b.text.toLowerCase()) {
-                        return -1
-                    } else if (a.text.toLowerCase() > b.text.toLowerCase()) {
-                        return 1
-                    } else {
-                        return 0
-                    }
-                })
+                return this.#todos.sort((a, b) => a.text.toLowerCase().localeCompare(b.text.toLowerCase()))
             default:
                 return this.#todos
         }
