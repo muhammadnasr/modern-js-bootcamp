@@ -1,8 +1,9 @@
-import { renderEditTodo, generateLastEdited } from './views'
+import { renderEditTodo } from './views'
 import { TodosService } from './todos-service'
 
 
 const textElement = document.querySelector('#todo-text')
+const saveElement = document.querySelector('#save-todo')
 const removeElement = document.querySelector('#remove-todo')
 const dateElement = document.querySelector('#last-edited')
 const todoId = location.hash.substring(1)
@@ -10,11 +11,11 @@ const todoId = location.hash.substring(1)
 TodosService.loadTodos()    
 renderEditTodo(todoId)
 
-textElement.addEventListener('input', (e) => {
+saveElement.addEventListener('click', (e) => {
     const todo = TodosService.updateTodo(todoId, {
-        text: e.target.value
+        text: textElement.value
     })
-    dateElement.textContent = generateLastEdited(todo.updatedAt)
+    location.assign('/index.html')
 })
 
 removeElement.addEventListener('click', (e) => {
