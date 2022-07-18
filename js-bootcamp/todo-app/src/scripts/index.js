@@ -29,6 +29,14 @@ document.querySelector('#hide-completed').addEventListener('change', (e) => {
     renderTodos()
 })
 
+
+document.querySelector('#filter-by').addEventListener('change', (e) => {
+    TodosService.setFilters({
+        sortBy: e.target.value
+    })
+    renderTodos()
+})
+
 window.addEventListener('storage', (e) => {
     if (e.key === 'todos') {
         TodosService.loadTodos()
