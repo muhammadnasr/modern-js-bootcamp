@@ -1,3 +1,4 @@
+//==================================================================
 // Callback
 const getDataCallback = (num, callback) => {
     setTimeout(() => {
@@ -9,6 +10,7 @@ const getDataCallback = (num, callback) => {
     }, 2000)
 }
 
+//callback hell (nested callbacks)
 getDataCallback(2, (err, data) => {
     if (err) {
         console.log(err)
@@ -23,6 +25,7 @@ getDataCallback(2, (err, data) => {
     }
 })
 
+//==================================================================
 // Promise
 const getDataPromise = (num) => new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -30,6 +33,7 @@ const getDataPromise = (num) => new Promise((resolve, reject) => {
     }, 2000)
 })
 
+//nested promise 
 getDataPromise(2).then((data) => {
     getDataPromise(data).then((data) => {
         console.log(`Promise data: ${data}`)
@@ -40,6 +44,7 @@ getDataPromise(2).then((data) => {
     console.log(err)
 })
 
+//serial calls (flat)
 getDataPromise(10).then((data) => {
     return getDataPromise(data)
 }).then((data) => {

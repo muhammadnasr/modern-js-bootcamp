@@ -12,17 +12,18 @@ if (name === undefined) {
 // Undefined for function arguments
 // Undefined as function return default value
 let square = function (num) {
-    console.log(num)
+    console.log(num)//print undefined
 }
 
-let result = square()//print undefined
+let result = square()
 console.log(result) // print undefined
 
-// Null as assined value
+// Null as assigned value
 let age = 27
 age = null
 console.log(age) // print null
+
 let a = null
 let b 
-console.log(a === b);// false
-console.log(a == b); //true
+console.log(a === b);// false null does not equal undefined
+console.log(a == b); //true 

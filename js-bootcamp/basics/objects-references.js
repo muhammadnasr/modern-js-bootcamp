@@ -16,7 +16,7 @@ let getAccountSummary = function (account) {
     return `Account for ${account.name} has $${account.income} in income.`
 }
 
-addIncome(myAccount, 2000)//object passed by reference
+addIncome(myAccount, 2000)//objects are passed by reference
 console.log(getAccountSummary(myAccount))
 resetAccount(myAccount)
 console.log(getAccountSummary(myAccount))

@@ -1,6 +1,6 @@
 const data = {
     locations: [],
-    get location() {
+    get location() {//get and set can be used in classes as well
         return this._location
     },
     set location(value) {
@@ -12,4 +12,4 @@ const data = {
 // code that uses the data object
 data.location = '  Philadelphia    '
 data.location = ' New York'
-console.log(data)
+console.log(data.location)

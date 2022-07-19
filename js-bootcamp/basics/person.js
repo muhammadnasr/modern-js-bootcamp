@@ -1,5 +1,8 @@
-// Prototypal Inheritance
+// Prototypal Inheritance (a chain than ends with null)
 // myPerson --> Person.prototype --> Object.prototype --> null
+
+// we can add method to all objects (instances) that inherit from Person at runtime by changing prototype
+//for ex; Person.prototype.newFunction = function () {doSomething}
 
 class Person {
     constructor(firstName, lastName, age, likes = []) {
@@ -27,9 +30,11 @@ class Person {
     }
 }
 
+
+//inheritance
 class Employee extends Person {
     constructor(firstName, lastName, age, position, likes) {
-        super(firstName, lastName, age, likes)
+        super(firstName, lastName, age, likes)//must call super on first line before accessing this
         this.position = position
     }
     getBio() {
