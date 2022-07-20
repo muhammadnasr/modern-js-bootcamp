@@ -37,3 +37,9 @@ console.log(person.name)
 //sort in place ascending 
 people.sort((personA, personB) => personA.age - personB.age);
 console.log(people);
+
+//return array with result of map called on each item
+console.log(people.map(person => `${person.name} is ${person.age} years old`))
+
+//create an array of names (map), then concatenate names into one string (reduce)
+console.log(people.map(person => person.name).reduce((previousName, currentName) => `${previousName} , ${currentName}`))
