@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel src/*.html",
+    "prebuild": "rm -rf dist",
     "build": "parcel build src/*.html"
   },
  "author": "",
