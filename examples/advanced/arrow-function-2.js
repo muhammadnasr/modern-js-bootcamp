@@ -1,7 +1,7 @@
 //==================================================================
 //arguments in arrow functions
 const addArrow = () => {
-    //arrow functions does not bind arguments are not bound to arrow funnctions
+    //arguments are not bound to arrow funnctions
    // return arguments[0] + arguments[1] 
 }
 
