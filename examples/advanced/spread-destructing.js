@@ -6,10 +6,12 @@ const todo = {
     completed: false
 }
 
-const printTodo = ({ text, completed }) => {
-    console.log(`${text}: ${completed}`)
+const printTodo = ({ text, completed } = {}) => {
+    console.log(`destructuring ${text}: ${completed}`)
 }
 printTodo(todo)
+
+printTodo()//destructuring undefinded cause an error unless there is default parameter
 
 const { text: todoText, completed, details = 'No details provided', ...others } = todo
 
