@@ -25,7 +25,7 @@ counter.decrement()
 console.log(counter.get())//-1
 
 //==================================================================
-//Currying, create a function of a function that have access to first function variables using using closure
+//Currying, create a function of a function that have access to first function variables using closure
 // Tipper
 const createTipper = (baseTip) => {
     return (amount) => {

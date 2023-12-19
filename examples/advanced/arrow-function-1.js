@@ -42,4 +42,6 @@ console.log(people);
 console.log(people.map(person => `${person.name} is ${person.age} years old`))
 
 //create an array of names (map), then concatenate names into one string (reduce)
-console.log(people.map(person => person.name).reduce((previousName, currentName) => `${previousName} , ${currentName}`))
+console.log(people.map(person => person.name)
+            .reduce((previousName, currentName) => 
+            `${previousName} , ${currentName}`))
